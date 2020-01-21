@@ -1,5 +1,11 @@
 <main>
-  <p>I am main block</p>
+  <app-source-name></app-source-name>
+  <div class="selectors">
+    <app-selector></app-selector>
+    <app-text-area></app-text-area>
+    <app-check-box></app-check-box>
+    <app-button (onClick)="functioncall($event)" [label]="label"></app-button>
+  </div>
   <nav>
     <a routerLink="/main" routerLinkActive="active">Main Information</a>
     <a routerLink="/contacts" routerLinkActive="active">Contacts</a>

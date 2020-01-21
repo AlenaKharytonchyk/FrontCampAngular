@@ -6,7 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-view.component.less']
 })
 export class MainViewComponent implements OnInit {
+  label = 'Add article';
 
+  functioncall($event) {
+    console.log('functioncall', $event);
+  }
   constructor() { }
 
   ngOnInit() {
