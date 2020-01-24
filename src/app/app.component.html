@@ -1,9 +1,9 @@
-<div class="content" role="main">
+<div class="container" role="main">
     <app-header></app-header>
     <div class="main-container">
       <app-main-view [class] = main></app-main-view>
       <section class="cards-container">
-        <app-card [class] = border></app-card>
+        <app-card></app-card>
         <app-button (onClick)="functioncall($event)" [label]="label"></app-button>
       </section>
     </div>
