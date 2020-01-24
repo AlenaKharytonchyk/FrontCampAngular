@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsService } from '../../services/news.service';
+import { CardComponent } from '../card/card.component';
 
-// tslint:disable-next-line:component-class-suffix
-// class Source {
-//   name: string;
-//   url: string;
-// }
 
 @Component({
   selector: 'app-selector',
@@ -14,27 +10,31 @@ import { NewsService } from '../../services/news.service';
 })
 
 export class SelectorComponent implements OnInit {
-  // newsChannelNames;
-  articles: any[] = [];
+  sources: any[] = [];
+  selectedSource: string;
   constructor( private newsService: NewsService ) { }
 
   ngOnInit() {
-    // this.newsChannelNames = this.newsService.getNewsRecources();
-    // this.newsService.getNewsRecources().subscribe(data => this.sources = data['sources']);
+    this.selectedSource = 'Select the Channel';
   }
-  onSave() {
-    this.newsService.storeArticles(this.articles).subscribe(
+  onShow() {
+    this.newsService.getSourceName().subscribe(
       (response) => console.log(response),
       (error) => console.log(error)
     );
   }
 
   onGet() {
-    this.newsService.getNewsRecources().subscribe(
-      (articles: any) => {
-        this.articles = articles;
+    this.newsService.getSourceName().subscribe(
+      (sources: any) => {
+        this.sources = sources;
       },
       (error) => console.log(error)
     );
+  }
+
+  onSelect(source: any) {
+    this.newsService.source = source;
+    this.selectedSource = source.name;
   }
 }

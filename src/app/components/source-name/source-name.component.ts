@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NewsService} from '../../services/news.service';
 
 @Component({
   selector: 'app-source-name',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./source-name.component.less']
 })
 export class SourceNameComponent implements OnInit {
-
-  constructor() { }
+  sources: any[] = [];
+  selectedSource: string;
+  constructor( private newsService: NewsService ) { }
 
   ngOnInit() {
+    this.selectedSource = 'Select the Channel';
   }
+
+  get selected() {
+    return this.newsService.source && this.newsService.source.name || this.selectedSource;
+  }
+
 
 }

@@ -1,11 +1,9 @@
-<div class="dropdown" (click)="onGet()">
+<div class="dropdown" (click)=onGet()>
   <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Select the Channel
+    {{selectedSource}}
   </a>
 
   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <ng-container *ngFor="let article of articles">
-      <a class="dropdown-item" >{{article.author}}</a>
-    </ng-container>
+      <a class="dropdown-item" *ngFor="let article of sources" (click)=onSelect(article)>{{article.name}}</a>
   </div>
 </div>

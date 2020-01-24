@@ -7,13 +7,10 @@ import {NewsService} from '../../services/news.service';
   styleUrls: ['./card.component.less']
 })
 export class CardComponent implements OnInit {
-  // newsChannelNames;
   articles: any[] = [];
   constructor( private newsService: NewsService ) { }
 
   ngOnInit() {
-    // this.newsChannelNames = this.newsService.getNewsRecources();
-    // this.newsService.getNewsRecources().subscribe(data => this.sources = data['sources']);
   }
   onSave() {
     this.newsService.storeArticles(this.articles).subscribe(
@@ -25,9 +22,9 @@ export class CardComponent implements OnInit {
   onGet() {
     this.newsService.getNewsRecources().subscribe(
       (articles: any) => {
-        this.articles = articles;
+        this.articles = this.articles.concat(articles);
       },
-      (error) => console.log(error)
+      (error) => alert('No information. Select other channel')
     );
   }
 }

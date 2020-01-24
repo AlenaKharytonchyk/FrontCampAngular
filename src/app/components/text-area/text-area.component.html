@@ -1,4 +1,2 @@
-<form name="test" method="post" action="input1.php">
-    <input type="text" size="40" placeholder="Type your text...">
-    <input type="submit" value="Filter">
-</form>
+<input type="text" #textInput maxlength="4" placeholder="Type your text...">
+<button (click)="changeFilter(textInput.value)">Filter</button>
