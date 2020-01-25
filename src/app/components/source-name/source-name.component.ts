@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NewsService} from '../../services/news.service';
+import {DataStoreService} from '../../services/data-store.service';
 
 @Component({
   selector: 'app-source-name',
@@ -9,14 +9,13 @@ import {NewsService} from '../../services/news.service';
 export class SourceNameComponent implements OnInit {
   sources: any[] = [];
   selectedSource: string;
-  className: 'source-name';
-  constructor( private newsService: NewsService ) { }
+  constructor( private dataStore: DataStoreService) { }
 
   ngOnInit() {
     this.selectedSource = 'Select the Channel';
   }
 
   get selected() {
-    return this.newsService.source && this.newsService.source.name || this.selectedSource;
+    return this.dataStore.source && this.dataStore.source.name || 'Something when wrong';
   }
 }

@@ -18,21 +18,12 @@ export interface Articles {
   providedIn: 'root'
 })
 export class NewsService {
-  private selectedSource: Source = {id: null, name: 'Select the Channel'};
   private totalResults: number;
   filter: string;
 
   constructor(
     private http: HttpClient
   ) { }
-
-  get source() {
-    return this.selectedSource;
-  }
-
-  set source(value: Source) {
-    this.selectedSource = value;
-  }
 
   get searchResults() {
     return this.totalResults;
@@ -47,9 +38,9 @@ export class NewsService {
         })
       );
   }
-  getNewsResources(page: number) {
+  getNewsResources(source: Source, page: number) {
     return this.http.get<Articles>(
-      `https://newsapi.org/v2/everything?sources=${this.source.id}&page=${page}&apiKey=1d8434c04862439692cc773aa6bfc026`)
+      `https://newsapi.org/v2/everything?sources=${source.id}&page=${page}&apiKey=1d8434c04862439692cc773aa6bfc026`)
       .pipe(
         map((response: Articles) => {
           console.log('response', response);

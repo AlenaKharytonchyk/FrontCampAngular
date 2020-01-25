@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsService } from '../../services/news.service';
-import { CardComponent } from '../card/card.component';
 import Source from '../../models/source';
+import {DataStoreService} from '../../services/data-store.service';
 
 
 @Component({
@@ -11,23 +11,28 @@ import Source from '../../models/source';
 })
 
 export class SelectorComponent implements OnInit {
-  sources: Source[] = [];
-  constructor( private newsService: NewsService ) { }
-
+  constructor( private newsService: NewsService, private dataStore: DataStoreService) { }
   ngOnInit() {
-    this.newsService.getSourceName().subscribe(
-      (sources: any) => {
-        this.sources = sources;
-      },
-      (error) => console.log(error)
-    );
+    if (!this.dataStore.sources) {
+      this.newsService.getSourceName().subscribe(
+        (sources: Source[]) => {
+          this.dataStore.sources = sources;
+        },
+        (error) => console.log(error)
+      );
+    }
   }
+
   get selectedSourceMod() {
-    return this.newsService.source;
+    return this.dataStore.source;
   }
 
   set selectedSourceMod(value: Source) {
-    this.newsService.source = value;
+    this.dataStore.source = value;
     console.log(`Selected source: ${value.name}`);
+  }
+
+  get sources() {
+    return this.dataStore.sources;
   }
 }

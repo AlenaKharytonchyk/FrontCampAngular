@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NewsService} from '../../services/news.service';
 import Article from '../../models/article';
 import Source from '../../models/source';
+import {DataStoreService} from '../../services/data-store.service';
 
 @Component({
   selector: 'app-card-list',
@@ -9,47 +10,33 @@ import Source from '../../models/source';
   styleUrls: ['./card-list.component.less']
 })
 export class CardListComponent implements OnInit {
-  articles: Article[];
-  private source: Source;
   private page: number;
-
-  constructor(private newsService: NewsService) { }
+  private lastSourceId: string;
+  constructor(private newsService: NewsService, private dataStore: DataStoreService) { }
 
   ngOnInit() {
-    this.articles = [];
-    this.source = {id: null, name: null};
     this.page = 1;
   }
 
-  get canLoad() {
-    return this.newsService.source.id && this.articles.length === 0 || this.newsService.searchResults > this.articles.length;
+  get articles() {
+    return this.dataStore.articles;
   }
 
-  get articleList() {
-    if (this.newsService.source.id !== this.source.id){
-      return [];
-    }
+  get nextPage() {
+    return this.lastSourceId === this.dataStore.source.id
+      ? this.page += 1
+      : this.page = 1;
+  }
 
-    if (this.newsService.filter) {
-      const filter = this.newsService.filter.toLowerCase();
-      return this.articles.filter(article => article.title.toLowerCase().indexOf(filter) > -1);
-    }
-
-    return this.articles;
+  get canLoad() {
+    return this.dataStore.source.id && this.articles.length === 0 || this.newsService.searchResults > this.articles.length;
   }
 
   onLoadNews() {
-    if (this.source.id !== this.newsService.source.id) {
-      this.articles = [];
-      this.page = 1;
-    } else {
-      this.page += 1;
-    }
-
-    this.newsService.getNewsResources(this.page).subscribe(
+    this.newsService.getNewsResources(this.dataStore.source, this.nextPage).subscribe(
       (articles: Article[]) => {
-        this.articles = this.articles.concat(articles);
-        this.source = this.newsService.source;
+        this.dataStore.articles = articles;
+        this.lastSourceId = this.dataStore.source.id;
       }
     );
   }

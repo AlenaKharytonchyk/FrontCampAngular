@@ -21,6 +21,7 @@ import {FormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CardListComponent } from './components/card-list/card-list.component';
 import {NewsComponent} from './pages/news/news.component';
+import { CardDetailsComponent } from './components/card-details/card-details.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import {NewsComponent} from './pages/news/news.component';
     AddNewsComponent,
     CardTemplateComponent,
     CardListComponent,
+    CardDetailsComponent,
   ],
   imports: [
     BrowserModule,
