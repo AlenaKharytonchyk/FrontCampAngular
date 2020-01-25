@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {NewsListService} from '../../news.service';
 import Article from '../../models/article';
+import {DataStoreService} from '../../services/data-store.service';
 
 @Component({
   selector: 'app-card-template',
@@ -9,18 +9,23 @@ import Article from '../../models/article';
 })
 export class CardTemplateComponent implements OnInit {
   article: Article;
-  constructor(private accountsService: NewsListService) { }
-  ngOnInit() {
+  constructor(private dataStore: DataStoreService) { }
 
+  ngOnInit() {
+    this.article = {
+      url: null,
+      urlToImage: null,
+      source: null,
+      title: null,
+      author: null,
+      publishedAt: null,
+      content: null,
+      createdByMe: null,
+      description: null
+    };
   }
 
-  onCreateAccount(
-    accountName: string,
-    accountData: string,
-    accountContent: string,
-    accountImg: string,
-    accountAuthor: string,
-    accountUrl: string) {
-    this.accountsService.addNews(accountName, accountData, accountContent, accountImg, accountAuthor, accountUrl);
+  onSubmit() {
+    this.dataStore.articles = [this.article];
   }
 }

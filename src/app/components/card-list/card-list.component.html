@@ -1,5 +1,5 @@
 
 <section class="card-container">
   <app-card *ngFor="let article of articles" [article]="article"></app-card>
-  <button class="btn btn-primary" (click)="onLoadNews()" [disabled]="!canLoad">Load News</button>
+  <button class="btn btn-secondary" (click)="onLoadNews()" [disabled]="!canLoad">Load News</button>
 </section>

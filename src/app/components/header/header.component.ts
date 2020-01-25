@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.less']
 })
 export class HeaderComponent implements OnInit {
+  userName: string;
 
   constructor() { }
 
   ngOnInit() {
+    this.userName = 'John Dou';
   }
 
 }
