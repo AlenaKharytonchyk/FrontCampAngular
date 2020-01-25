@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-information.component.less']
 })
 export class MainInformationComponent implements OnInit {
+  public main = 'main';
 
   constructor() { }
 

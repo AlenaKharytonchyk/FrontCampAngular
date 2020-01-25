@@ -16,6 +16,6 @@ export class CheckBoxComponent implements OnInit {
   }
 
   onCreateAccount(accountName: string, accountStatus: string) {
-    this.newsListService.addNews(accountName, accountStatus);
+    // this.newsListService.addNews(accountName, accountStatus);
   }
 }

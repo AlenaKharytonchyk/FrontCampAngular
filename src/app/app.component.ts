@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'frontCampTask';
-  public main = 'main';
   public border = 'border';
   public basis = 'basis';
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NewsListService} from '../../news.service';
+import Article from '../../models/article';
 
 @Component({
   selector: 'app-card-template',
@@ -7,7 +8,7 @@ import {NewsListService} from '../../news.service';
   styleUrls: ['./card-template.component.less']
 })
 export class CardTemplateComponent implements OnInit {
-
+  article: Article;
   constructor(private accountsService: NewsListService) { }
   ngOnInit() {
 

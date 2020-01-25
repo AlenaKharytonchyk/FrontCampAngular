@@ -1,9 +1,4 @@
-<div class="dropdown" (click)=onGet()>
-  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    {{selectedSource}}
-  </a>
-
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-      <a class="dropdown-item" *ngFor="let article of sources" (click)=onSelect(article)>{{article.name}}</a>
-  </div>
-</div>
+<select [(ngModel)]="selectedSourceMod">
+  <option disabled selected [value]="null">Select the Channel</option>
+  <option *ngFor="let article of sources" [ngValue]="article">{{article.name}}</option>
+</select>

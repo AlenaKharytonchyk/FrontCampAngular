@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NewsService} from '../../services/news.service';
 
 @Component({
   selector: 'app-text-area',
@@ -6,15 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./text-area.component.less']
 })
 export class TextAreaComponent implements OnInit {
-  fruitArray: string[] = ['banana', 'pear', 'apple', 'peach', 'apricot', 'plum', 'bobobo'];
-  char = 'a';
-  sum: number = 73/3;
-  constructor() { }
+  private filter: string;
+  constructor(private newsService: NewsService) { }
 
   ngOnInit() {
   }
 
-  changeFilter(char: string) {
-    this.char = char;
+  changeFilter(filter: string) {
+    this.filter = filter;
+    this.newsService.filter = filter;
   }
 }

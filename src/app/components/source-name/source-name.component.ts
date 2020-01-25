@@ -9,6 +9,7 @@ import {NewsService} from '../../services/news.service';
 export class SourceNameComponent implements OnInit {
   sources: any[] = [];
   selectedSource: string;
+  className: 'source-name';
   constructor( private newsService: NewsService ) { }
 
   ngOnInit() {
@@ -18,6 +19,4 @@ export class SourceNameComponent implements OnInit {
   get selected() {
     return this.newsService.source && this.newsService.source.name || this.selectedSource;
   }
-
-
 }

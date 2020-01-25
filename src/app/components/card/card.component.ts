@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {NewsService} from '../../services/news.service';
+import Article from '../../models/article';
 
 @Component({
   selector: 'app-card',
@@ -7,24 +8,11 @@ import {NewsService} from '../../services/news.service';
   styleUrls: ['./card.component.less']
 })
 export class CardComponent implements OnInit {
-  articles: any[] = [];
+  @Input() article: Article;
+  newsId: string;
   constructor( private newsService: NewsService ) { }
 
   ngOnInit() {
-  }
-  onSave() {
-    this.newsService.storeArticles(this.articles).subscribe(
-      (response) => console.log(response),
-      (error) => console.log(error)
-    );
-  }
-
-  onGet() {
-    this.newsService.getNewsRecources().subscribe(
-      (articles: any) => {
-        this.articles = this.articles.concat(articles);
-      },
-      (error) => alert('No information. Select other channel')
-    );
+    this.newsId = this.article.url.replace(/\/$/, '').split('/').slice(-1)[0];
   }
 }

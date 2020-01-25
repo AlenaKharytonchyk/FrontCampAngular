@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NewsService } from '../../services/news.service';
 import { CardComponent } from '../card/card.component';
+import Source from '../../models/source';
 
 
 @Component({
@@ -10,21 +11,10 @@ import { CardComponent } from '../card/card.component';
 })
 
 export class SelectorComponent implements OnInit {
-  sources: any[] = [];
-  selectedSource: string;
+  sources: Source[] = [];
   constructor( private newsService: NewsService ) { }
 
   ngOnInit() {
-    this.selectedSource = 'Select the Channel';
-  }
-  onShow() {
-    this.newsService.getSourceName().subscribe(
-      (response) => console.log(response),
-      (error) => console.log(error)
-    );
-  }
-
-  onGet() {
     this.newsService.getSourceName().subscribe(
       (sources: any) => {
         this.sources = sources;
@@ -32,9 +22,12 @@ export class SelectorComponent implements OnInit {
       (error) => console.log(error)
     );
   }
+  get selectedSourceMod() {
+    return this.newsService.source;
+  }
 
-  onSelect(source: any) {
-    this.newsService.source = source;
-    this.selectedSource = source.name;
+  set selectedSourceMod(value: Source) {
+    this.newsService.source = value;
+    console.log(`Selected source: ${value.name}`);
   }
 }
