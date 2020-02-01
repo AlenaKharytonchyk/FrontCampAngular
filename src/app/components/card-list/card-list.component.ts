@@ -16,6 +16,15 @@ export class CardListComponent implements OnInit {
 
   ngOnInit() {
     this.page = 1;
+
+  }
+
+  get filter() {
+    return this.dataStore.filter;
+  }
+
+  get enabled() {
+    return this.dataStore.displayMyArticles;
   }
 
   get articles() {
@@ -37,6 +46,7 @@ export class CardListComponent implements OnInit {
       (articles: Article[]) => {
         this.dataStore.articles = articles;
         this.lastSourceId = this.dataStore.source.id;
+        this.dataStore.displayMyArticles$.subscribe(console.log);
       }
     );
   }

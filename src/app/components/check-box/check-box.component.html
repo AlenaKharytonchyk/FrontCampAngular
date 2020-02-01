@@ -1,24 +1,2 @@
-<input type="checkbox">Only created by me
-
-<!--<div class="row">-->
-<!--  <div>-->
-<!--    <div >-->
-<!--      <label>Account Name</label>-->
-<!--      <input-->
-<!--        type="text"-->
-<!--        class="form-control"-->
-<!--        #accountName>-->
-<!--    </div>-->
-<!--    <div>-->
-<!--      <select class="form-control" #status>-->
-<!--        <option value="active">Active</option>-->
-<!--        <option value="inactive">Inactive</option>-->
-<!--        <option value="hidden">Hidden</option>-->
-<!--      </select>-->
-<!--    </div>-->
-<!--    <button-->
-<!--      (click)="onCreateAccount(accountName.value, status.value)">-->
-<!--      Add Account-->
-<!--    </button>-->
-<!--  </div>-->
-<!--</div>-->
+<input type="checkbox" id="myNews" (change)="onChange($event)">
+<label for="myNews">Only created by me</label>

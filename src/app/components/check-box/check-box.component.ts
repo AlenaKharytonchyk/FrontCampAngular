@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {NewsService} from '../../services/news.service';
-import { NewsListService } from '../../news.service';
+import {DataStoreService} from '../../services/data-store.service';
+import {of} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-check-box',
@@ -9,13 +10,13 @@ import { NewsListService } from '../../news.service';
 })
 export class CheckBoxComponent implements OnInit {
 
-  constructor(private newsListService: NewsListService) {
+  constructor(private dataStore: DataStoreService) {
   }
 
   ngOnInit() {
   }
 
-  onCreateAccount(accountName: string, accountStatus: string) {
-    // this.newsListService.addNews(accountName, accountStatus);
+  onChange($event) {
+    this.dataStore.displayMyArticles = $event.target.checked;
   }
 }

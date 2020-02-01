@@ -22,6 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CardListComponent } from './components/card-list/card-list.component';
 import {NewsComponent} from './pages/news/news.component';
 import { CardDetailsComponent } from './components/card-details/card-details.component';
+import { TitleFilterPipe } from './pipes/title-filter.pipe';
+import { MyNewsFilterPipe } from './pipes/my-news-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { CardDetailsComponent } from './components/card-details/card-details.com
     CardTemplateComponent,
     CardListComponent,
     CardDetailsComponent,
+    TitleFilterPipe,
+    MyNewsFilterPipe,
   ],
   imports: [
     BrowserModule,

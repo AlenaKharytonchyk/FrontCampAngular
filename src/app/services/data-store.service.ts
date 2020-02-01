@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import Source from '../models/source';
 import Article from '../models/article';
 import {NewsService} from './news.service';
+import {fromEvent, Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +16,10 @@ export class DataStoreService {
   private selectedSource: Source = {id: null, name: 'Select the Channel'};
   sources: Source[];
   filter: string;
-  constructor(private newsService: NewsService) {}
+  displayMyArticles: boolean;
+  displayMyArticles$: Observable<any>;
+  constructor(private newsService: NewsService) {
+  }
 
   get source() {
     return this.selectedSource;
