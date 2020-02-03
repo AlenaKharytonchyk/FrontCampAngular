@@ -12,4 +12,10 @@ export class FooterComponent implements OnInit {
   ngOnInit() {
   }
 
+  addFooterText() {
+    const footer = document.querySelector('footer');
+    if(footer.children.length === 1){
+      footer.innerHTML = `${footer.innerHTML} <footer-text></footer-text>`;
+    }
+  }
 }

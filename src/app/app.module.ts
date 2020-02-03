@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {Injector, NgModule} from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule, routingComponents } from './app-routing.module';
@@ -24,6 +24,8 @@ import {NewsComponent} from './pages/news/news.component';
 import { CardDetailsComponent } from './components/card-details/card-details.component';
 import { TitleFilterPipe } from './pipes/title-filter.pipe';
 import { MyNewsFilterPipe } from './pipes/my-news-filter.pipe';
+import { FooterTextComponent } from './components/footer-text/footer-text.component';
+import {createCustomElement} from '@angular/elements';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,7 @@ import { MyNewsFilterPipe } from './pipes/my-news-filter.pipe';
     CardDetailsComponent,
     TitleFilterPipe,
     MyNewsFilterPipe,
+    FooterTextComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,6 +59,13 @@ import { MyNewsFilterPipe } from './pipes/my-news-filter.pipe';
     BrowserAnimationsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [FooterTextComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(injector: Injector) {
+    const element = createCustomElement(FooterTextComponent, {injector});
+    customElements.define('footer-text', element);
+  }
+}
+
