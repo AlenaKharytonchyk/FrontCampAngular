@@ -1,0 +1,22 @@
+import { Component, OnInit } from '@angular/core';
+import {DataStoreService} from '../../services/data-store.service';
+import {of} from 'rxjs';
+import {map} from 'rxjs/operators';
+
+@Component({
+  selector: 'app-check-box',
+  templateUrl: './check-box.component.html',
+  styleUrls: ['./check-box.component.less']
+})
+export class CheckBoxComponent implements OnInit {
+
+  constructor(private dataStore: DataStoreService) {
+  }
+
+  ngOnInit() {
+  }
+
+  onChange($event) {
+    this.dataStore.displayMyArticles = $event.target.checked;
+  }
+}

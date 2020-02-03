@@ -7,8 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'frontCampTask';
-  public grow = 'grow';
+  public border = 'border';
   public basis = 'basis';
+
+  label = 'Load More';
+
+  functioncall(event) {
+    console.log('functioncall', event);
+  }
 }
 
 

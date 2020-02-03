@@ -1,0 +1,5 @@
+
+<section class="card-container">
+  <app-card *ngFor="let article of articles | titleFilter: filter | myNewsFilter: enabled" [article]="article"></app-card>
+  <button class="btn btn-secondary" (click)="onLoadNews()" [disabled]="!canLoad">Load News</button>
+</section>

@@ -1,0 +1,4 @@
+<select [(ngModel)]="selectedSourceMod">
+  <option disabled selected [value]="null">Select the Channel</option>
+  <option *ngFor="let source of sources" [ngValue]="source">{{source.name}}</option>
+</select>
