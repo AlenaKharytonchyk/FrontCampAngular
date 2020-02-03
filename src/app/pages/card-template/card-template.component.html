@@ -1,6 +1,6 @@
 <h2 class="col-md-12 text-center">Edit</h2>
 <div class="container-md" >
-  <form>
+  <form #addArticleForm="ngForm">
     <div class="row">
     <div class="col-md-6">
       <div class="form-group">
@@ -34,7 +34,7 @@
       <input type="text" class="form-control" id="source" required [(ngModel)]="article.source" name="source">
     </div>
       <div class="row justify-content-around">
-        <button class="btn btn-secondary col-md-4" type="submit">Save</button>
+        <button class="btn btn-secondary col-md-4" type="submit" [disabled]="addArticleForm.form.invalid">Save</button>
         <button class="btn btn-secondary col-md-4" routerLink="">Candel</button>
       </div>
     </div>
